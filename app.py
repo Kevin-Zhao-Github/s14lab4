@@ -1,14 +1,14 @@
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from flask import Flask, render_template, jsonify
 from models.homeworkuser import Db, HomeworkUser
 from os import environ
 
-load_dotenv('.env')
+#load_dotenv('.env')
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/homework_users_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = environ.get('SECRET_KEY')
+app.secret_key = "s14a-key"
 Db.init_app(app)
 
 
